@@ -21,33 +21,39 @@
 import socket
 import os.path
 
-def send_file(file_path,remote_ip,port,block_size,timeout):
-	#so is the control message and data transfor tunnle
+def recv_file(port,block_size,timeout):
+	# Set up socket
 	so=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-	so.bind(('0.0.0.0',0))
+	so.bind(('0.0.0.0',port))
 	so.settimeout(timeout)
-	# Send file name to anounce remote side to be ready to recieve file
-	so.connect((remote_ip,port))
-	#Expect echo 'READY'
+	# Listen on socket to be ready to receive file
+	so.listen(1)
+	conn,addr=so.accept()
+	# Receive file name
 	try:
-		so.sendall('FILE:{0}'.format(os.path.basename(file_path)).encode('UTF-8'))
-		reply=so.recv(block_size).decode('UTF-8')
-	#Timeout when expecting reply from remote side
+		buf=conn.recv(block_size).decode('UTF-8')
 	except TimeoutError:
-		print('Error: Contact remote side time out\n')
-		so.close()
+		print('Error: Receive timeout.\n')
+		conn.close()
 		exit()
-	#Remote side is not ready for recieving files
-	if reply!='READY':
-		print('Error: Remote side reply :{0}'.format(reply))
-		so.close()
+	if buf[:5]!='FILE:':
+		print('Invalid control message: {0}'.format(buf[:5]))
+		conn.close()
 		exit()
-	#Remote side is ready, begin to sendall file
-	f=open(file_path,'rb')
-	buf=b'random content'
+	filename=buf[5:]
+	# Setup target file
+	if os.path.exists(filename):
+		if input('File already exists. Sure to overwrite it? Y(es) or N(o)\n')=='N':
+			conn.sendall('FILE ALREADY EXISTS'.encode('UTF-8'))
+			conn.close()
+	f=open(filename,'wb')
+	# Receive file
+	conn.sendall('READY'.encode('UTF-8'))
+	buf=b'RANDOM'
 	while buf!=b'':
-		buf=f.read(block_size)
-		so.sendall(buf)
+		buf=conn.recv(block_size)
+		f.write(buf)
+	# Close file and socket
 	f.close()
-	so.close()
+	conn.close()
 
