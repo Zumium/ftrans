@@ -46,6 +46,8 @@ def recv_file(port,block_size,timeout):
 		if input('File already exists. Sure to overwrite it? Y(es) or N(o)\n')=='N':
 			conn.sendall('FILE ALREADY EXISTS'.encode('UTF-8'))
 			conn.close()
+			so.close()
+			exit()
 	f=open(filename,'wb')
 	# Receive file
 	conn.sendall('READY'.encode('UTF-8'))
@@ -55,6 +57,7 @@ def recv_file(port,block_size,timeout):
 		f.write(buf)
 	# Close file and socket
 	f.close()
+	print('Have received file: {0}'.format(filename))
 	conn.close()
 	so.close()
 
