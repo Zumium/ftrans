@@ -56,4 +56,5 @@ def recv_file(port,block_size,timeout):
 	# Close file and socket
 	f.close()
 	conn.close()
+	so.close()
 
