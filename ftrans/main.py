@@ -31,7 +31,26 @@ def main():
 	parser.add_argument('-f','--file',help='the path of to-be-transforred file')
 	parser.add_argument('-b','--block-size',help='set internet transfor block size')
 	parser.add_argument('-t','--timeout',type=int,help='set time out value by seconds')
+	parser.add_argument('-i','--info',help='show license and author information',action='store_true')
 	args=parser.parse_args()
+
+	if args.info:
+		print("""\nCopyright 2015 Zumium <martin007323@gmail.com> 
+
+ftrans is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+ftrans is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with ftrans.  If not, see <http://www.gnu.org/licenses/>.\n""")
+		exit()
+
 	if not (args.sendto or args.receive):
 		print('Error: Must be specific to be sendor or receiver.\n')
 		exit()
@@ -45,6 +64,7 @@ def main():
 		print('Error: Receiver cannot send file.\n')
 		exit()
 	
+
 	if args.timeout:
 		time_out=args.timeout
 	if args.block_size:
