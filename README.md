@@ -9,6 +9,16 @@ to another.ftrans's design target is a lightweight,quick-to-use and
 extremly simple file transmitter so it doesn't consider other things
 like safety.
 
+Install
+
+	sudo python3 setup.py install
+
+Uninstall
+
+	sudo pip3 uninstall ftrans
+
+Usage
+
 	usage: main.py [-h] [-s SENDTO] [-r] [-f FILE] [-b BLOCK_SIZE] [-t TIMEOUT]
                [-i]
 
