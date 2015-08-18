@@ -1,23 +1,23 @@
 # ftrans
 
-*ftrans -- A simple file transmitter program*
+ftrans -- A simple file transmitter program
 
-*Introducing*
+_Introducing_
 ---
 ftrans is designed in order to transmit one single file from a machine
 to another.ftrans's design target is a lightweight,quick-to-use and
 extremly simple file transmitter so it doesn't consider other things
 like safety.
 
-*Install*
+_Install_
 ---
 	sudo python3 setup.py install
 
-*Uninstall*
+_Uninstall_
 ---
 	sudo pip3 uninstall ftrans
 
-*Usage*
+_Usage_
 ---
 	usage: main.py [-h] [-s SENDTO] [-r] [-f FILE] [-b BLOCK_SIZE] [-t TIMEOUT]
                [-i]
@@ -36,7 +36,7 @@ like safety.
 	  -n RENAME, --rename RENAME
                         rename received file.used with -r option
 
-*License*
+_License_
 ---
 Copyright 2015 Zumium <martin007323@gmail.com>
 
