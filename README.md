@@ -2,24 +2,24 @@
 
 ftrans -- A simple file transmitter program
 
-_Introducing_
+__Introducing__
 ---
 ftrans is designed in order to transmit one single file from a machine
 to another.ftrans's design target is a lightweight,quick-to-use and
 extremly simple file transmitter so it doesn't consider other things
 like safety.
 
-_Install_
+__Install__
 ---
 	sudo python3 setup.py install
 
-_Uninstall_
+__Uninstall__
 ---
 	sudo pip3 uninstall ftrans
 
-_Usage_
+__Usage__
 ---
-	usage: main.py [-h] [-s SENDTO] [-r] [-f FILE] [-b BLOCK_SIZE] [-t TIMEOUT]
+	usage: main.py [-h] [-s SENDTO] [-r] [-f FILE] [-b BLOCK__SIZE] [-t TIMEOUT]
                [-i]
 
 	optional arguments:
@@ -28,7 +28,7 @@ _Usage_
                         specify receiver's ip address
 	  -r, --receive         receive file
 	  -f FILE, --file FILE  the path of to-be-transmitted file
-	  -b BLOCK_SIZE, --block-size BLOCK_SIZE
+	  -b BLOCK__SIZE, --block-size BLOCK__SIZE
 	                        set transmitting block size
 	  -t TIMEOUT, --timeout TIMEOUT
 	                        set time out value by seconds
@@ -36,7 +36,7 @@ _Usage_
 	  -n RENAME, --rename RENAME
                         rename received file.used with -r option
 
-_License_
+__License__
 ---
 Copyright 2015 Zumium <martin007323@gmail.com>
 
