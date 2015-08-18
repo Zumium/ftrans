@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
 	name="ftrans",
-	version="1.0",
+	version="1.1",
 	license="https://www.gnu.org/licenses/gpl-3.0.txt",
 	description="A simple file transfor tool for LAN",
 	author="Zumium",

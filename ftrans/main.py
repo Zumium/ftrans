@@ -21,7 +21,7 @@ import argparse
 from ftrans import filesendor,filereceiver
 
 def main():
-	block_size=1234
+	block_size=4096
 	time_out=None
 	port=7441
 
@@ -32,6 +32,7 @@ def main():
 	parser.add_argument('-b','--block-size',help='set transmitting block size')
 	parser.add_argument('-t','--timeout',type=int,help='set time out value by seconds')
 	parser.add_argument('-i','--info',help='show license and author information',action='store_true')
+	parser.add_argument('-n','--rename',help='rename received file.used with -r option')
 	args=parser.parse_args()
 
 	if args.info:
@@ -69,11 +70,12 @@ along with ftrans.  If not, see <http://www.gnu.org/licenses/>.\n""")
 		time_out=args.timeout
 	if args.block_size:
 		block_size=args.block_size
+	new_name=args.rename
 
 	if args.sendto:
 		filesendor.send_file(args.file,args.sendto,port,block_size,time_out)
 	else:
-		filereceiver.recv_file(port,block_size,time_out)
+		filereceiver.recv_file(port,block_size,time_out,new_name)
 
 if __name__=='__main__':
 	main()

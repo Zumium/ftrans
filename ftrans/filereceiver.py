@@ -21,7 +21,7 @@
 import socket
 import os.path
 
-def recv_file(port,block_size,timeout):
+def recv_file(port,block_size,timeout,new_name):
 	# Set up socket
 	so=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 	so.bind(('0.0.0.0',port))
@@ -43,6 +43,8 @@ def recv_file(port,block_size,timeout):
 	filename=buf[5:]
 	# Setup target file
 	print('receiving file: {0}'.format(filename))
+	if new_name!=None:
+		filename=new_name
 	if os.path.exists(filename):
 		if input('File already exists. Sure to overwrite it? Y(es) or N(o)\n')=='N':
 			conn.sendall('FILE ALREADY EXISTS'.encode('UTF-8'))
