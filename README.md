@@ -43,7 +43,7 @@ __Usage__
 
 __License__
 ---
-Copyright 2015 Zumium <martin007323@gmail.com>
+Copyright 2015-2016 Zumium <martin007323@gmail.com>
 
 ftrans is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
